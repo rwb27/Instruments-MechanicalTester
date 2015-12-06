@@ -1,0 +1,125 @@
+1x Assembly - Arduino Stack
+2x Assembly - Baffle
+1x Assembly - Bottom Face
+1x Assembly - Camera Mount
+1x Assembly - Flap
+1x Assembly - Front Module
+1x Assembly - Heater Chamber Bottom
+1x Assembly - Heater Chamber Top
+1x Assembly - Humidity Tube Inlet
+1x Assembly - Humidity Tube Outlet
+1x Assembly - Materials Testing
+1x Assembly - Rear Face
+1x Assembly - Rear Module
+1x Assembly - Rear Module Back Face
+1x Assembly - Rear Module Side Wall
+1x Assembly - Rear Module Side Wall#1
+2x Assembly - Side Wall
+1x Assembly - Top Face
+1x Assembly Front Enclosure
+1x Choc Bloc
+1x Fan
+1x Fan Blades
+16x Fixings - M3 Button Screw
+13x Fixings - M3 Button Screw#1
+1x Fixings - M3 Button Screw#2
+1x Fixings - M3 Button Screw#3
+158x Fixings - M3 button screw and nut
+8x Fixings - M3 button screw and nut#2
+4x Fixings - M3 button screw and nut#3
+21x Fixings - M3 cap screw and nut
+8x Fixings - M3 nut
+2x Fixings - M3 wing nut
+2x Fixings - M4 nut
+2x Fixings - M8 half nut
+1x Fixings - M8 nut
+1x Flap - Flap Panel
+1x Flap - Servo
+1x Flap - Servo Horn
+1x Fogger Wire
+2x Foot - Back
+2x Foot - Front
+1x Front Face
+1x Gantry Spacer
+1x HDMI Flat 90
+1x HDMI Plug
+1x HDMI Port
+1x Heater Elements Alternative Config with Plates
+1x Humidity - Bung
+1x Humidity End Cap
+3x Humidity Rubber Bumper
+1x Humidity Rubber Bumper#1
+1x Humidity Rubber Bumper#2
+1x Humidity Support
+1x Humidity Tube
+4x M2.5 PAN
+2x M4 CSK
+2x M4 CSK#1
+1x M8 Lead Screw
+1x Main Instrument
+2x Motor Wire
+2x Motor and Screw
+1x Nema 17 stepper motor
+1x OpenBeam - 120mm
+18x OpenBeam - 210mm
+4x OpenBeam - 240mm
+4x OpenBeam - 300mm
+6x OpenBeam - 60mm
+4x OpenBeam - 90mm
+1x OpenBeam Bearing Mount
+1x PSU - Assembly
+1x PSU - Bracket
+1x PSU - Main Body
+1x PSU - Right Angled IEC
+1x Panel - Back Face
+1x Panel - Baffle Front Plate
+1x Panel - Baffle Mount
+3x Panel - Baffle Spacer
+1x Panel - Bearing Top
+1x Panel - Bottom Face
+1x Panel - Camera Mounting Plate
+2x Panel - Delrin Plate
+1x Panel - Fan Mounting
+1x Panel - Front Door
+1x Panel - Front Frame
+1x Panel - HDMI support
+1x Panel - HDMI support#1
+1x Panel - Heater Chamber Bottom
+1x Panel - Heater Chamber Top
+1x Panel - Inner Back Wall
+1x Panel - Rear Module Back Face
+1x Panel - Rear Module Back Face#1
+1x Panel - Rear Module Double Glazing
+1x Panel - Rear Module Double Glazing#1
+1x Panel - Rear Module Humidity Side
+1x Panel - Rear Module PSU Side
+2x Panel - Rear Module Top/Bottom Double Glazing
+1x Panel - Rear Module Top/Bottom Double Glazing#1
+1x Panel - Side
+2x Panel - Side Double Glazing
+1x Panel - Top Double Glazing Back
+2x Panel - Top Double Glazing Back#1
+1x Panel - Top Double Glazing Back#2
+1x Panel - Top Double Glazing Back#3
+1x Panel - Top Double Glazing Back#4
+1x Panel - Top Face
+1x Part - 608 skate bearing
+2x Part - 60mm Fan
+2x Part - Arduino
+2x Part - Arduino Shield
+1x Plate - NEMA 17 mount
+1x Plate - NEMA 23 mount
+1x Raspberry Pi - Model B
+1x Relay Board
+1x Rpi Camera
+1x Servo Motor
+1x Servo Wire
+1x Shaft Coupler
+1x Small Fogger
+4x Tube - Coupler
+2x Tube - Elbow
+1x Tube - Inlet Horizontal
+1x Tube - Inlet Vertical
+1x Tube - Outlet Horizontal
+1x Tube - Outlet Vertical
+1x USB OTG Cable
