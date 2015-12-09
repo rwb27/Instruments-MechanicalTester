@@ -20,8 +20,7 @@ def export_component(c, folder)
   faces = faces.sort_by { |f| f.area }
   normal = faces.last.normal # Use largest face normal as local z axis
   t = Geom::Transformation.new([0,0,0], normal)
-  $out_file.puts("0\nSECTION\n2\nHEADER\n9\nMEASUREMENT\n70\n2\n0\nENDSEC\n0\nSECTION\n2\nENTITIES")
-
+  $out_file.puts(" 0\nSECTION\n 2\nHEADER\n 9\n$MEASUREMENT\n 70\n 2\n 0\nENDSEC\n 0\nSECTION\n 2\nENTITIES")
   old_curve = 0
   $face_count = 0
   $line_count = 0
@@ -37,19 +36,20 @@ def export_component(c, folder)
             curve = anedge.curve
             centrepoint =  curve.center.transform! t
             # The arc angles are relative to local arc x axis
-            x_axis_angle = Math.atan2(anedge.curve.xaxis.transform!(t).x, anedge.curve.xaxis.transform!(t).y)
+            x_axis_angle = Math.atan2(anedge.curve.xaxis.transform!(t).x,
+                                      anedge.curve.xaxis.transform!(t).y)
             start_angle = curve.start_angle - x_axis_angle
             end_angle = curve.end_angle - x_axis_angle
-            new_polyline || $out_file.puts("  0\nSEQEND") # Close off polyline if open
+            new_polyline || $out_file.puts(" 0\nSEQEND") # Close off polyline if open
 
             if (old_curve != curve) # Check if pointer is for same curve
               if (end_angle - start_angle > 6.2831) # Identify a circle - total angle = 2 pi radians
-                $out_file.puts("0\nCIRCLE\n8\nlayer0\n66\n1")
+                $out_file.puts(" 0\nCIRCLE\n8\nlayer0\n66\n1")
                 write_point(centrepoint)
                 $out_file.puts("40\n  "+(curve.radius.to_f * $stl_conv).to_s)
                 $circle_count += 1
               else
-                $out_file.puts("0\nARC\n8\nlayer0\n66\n1")
+                $out_file.puts(" 0\nARC\n8\nlayer0\n66\n1")
                 write_point(centrepoint)
                 $out_file.puts("40\n  "+(curve.radius.to_f * $stl_conv).to_s)
                 $out_file.puts("50\n  "+(start_angle.to_f / 3.142 * 180 + 90).to_s)
@@ -57,12 +57,13 @@ def export_component(c, folder)
                 $arc_count += 1
               end
             end
+
             old_curve = curve
             new_polyline = true
           else
             if (new_polyline)
               start_point = anedge.end.position.transform! t
-              $out_file.puts("0\nPOLYLINE\n8\nlayer0\n66\n1\n70\n8\n")
+              $out_file.puts(" 0\nPOLYLINE\n8\nlayer0\n66\n1\n70\n8\n")
               $out_file.puts("10\n  0.0\n20\n  0.0\n30\n  0.0\n  0\nVERTEX\n8\nlayer0")
                 write_point(start_point)
               new_polyline = false
@@ -74,7 +75,7 @@ def export_component(c, folder)
           end
         end
         if (!new_polyline)
-           $out_file.puts("  0\nSEQEND")
+           $out_file.puts(" 0\nSEQEND")
         end
       end
     end
