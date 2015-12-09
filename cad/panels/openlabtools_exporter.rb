@@ -92,7 +92,10 @@ def export
   puts "saving model"
   pages = model.pages
   pages.selected_page = pages[0]
-  # TODO Exit any edit instances
+  # Exit any edit instances
+  loop do
+    break unless model.close_active
+  end
   model.modified? || model.save
 
   # Save script in to Git controlled directory each time it is run
