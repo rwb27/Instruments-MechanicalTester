@@ -86,7 +86,7 @@
 1x Panel - Inner Back Wall
 1x Panel - Rear Module Back Double Glazing
 1x Panel - Rear Module Back Face
-1x Panel - Rear Module Back Face#1
+1x Panel - Rear Module Electronics
 1x Panel - Rear Module Humidity Side
 1x Panel - Rear Module Humidity Side Double Glazing
 1x Panel - Rear Module PSU Side
