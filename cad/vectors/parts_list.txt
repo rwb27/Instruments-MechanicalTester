@@ -71,32 +71,32 @@
 1x Panel - Baffle Mount
 3x Panel - Baffle Spacer
 1x Panel - Bearing Top
+2x Panel - Bottom Double Glazing
+1x Panel - Bottom Double Glazing Middle
 1x Panel - Bottom Face
 1x Panel - Camera Mounting Plate
 2x Panel - Delrin Plate
 1x Panel - Fan Mounting
 1x Panel - Front Door
 1x Panel - Front Frame
-1x Panel - HDMI support
-1x Panel - HDMI support#1
+1x Panel - HDMI support 1
+1x Panel - HDMI support 2
 1x Panel - Heater Chamber Bottom
 1x Panel - Heater Chamber Top
 1x Panel - Inner Back Wall
+1x Panel - Rear Module Back Double Glazing
 1x Panel - Rear Module Back Face
 1x Panel - Rear Module Back Face#1
-1x Panel - Rear Module Double Glazing
-1x Panel - Rear Module Double Glazing#1
 1x Panel - Rear Module Humidity Side
+1x Panel - Rear Module Humidity Side Double Glazing
 1x Panel - Rear Module PSU Side
-2x Panel - Rear Module Top/Bottom Double Glazing
-1x Panel - Rear Module Top/Bottom Double Glazing#1
+1x Panel - Rear Module PSU Side Double Glazing
+2x Panel - Rear Module Top and Bottom Double Glazing
 1x Panel - Side
 2x Panel - Side Double Glazing
 1x Panel - Top Double Glazing Back
-2x Panel - Top Double Glazing Back#1
-1x Panel - Top Double Glazing Back#2
-1x Panel - Top Double Glazing Back#3
-1x Panel - Top Double Glazing Back#4
+1x Panel - Top Double Glazing Front
+1x Panel - Top Double Glazing Middle
 1x Panel - Top Face
 1x Part - 608 skate bearing
 2x Part - 60mm Fan
