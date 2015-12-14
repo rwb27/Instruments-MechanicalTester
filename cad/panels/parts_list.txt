@@ -84,6 +84,8 @@
 1x Panel - Heater Chamber Bottom
 1x Panel - Heater Chamber Top
 1x Panel - Inner Back Wall
+1x Panel - NEMA 17 mount
+1x Panel - NEMA 23 mount
 1x Panel - Rear Module Back Double Glazing
 1x Panel - Rear Module Back Face
 1x Panel - Rear Module Electronics
@@ -103,8 +105,6 @@
 1x Part - Arduino
 2x Part - Arduino Shield
 1x Part - PSU
-1x Plate - NEMA 17 mount
-1x Plate - NEMA 23 mount
 1x Raspberry Pi - Model B
 1x Relay Board
 1x Rpi Camera
