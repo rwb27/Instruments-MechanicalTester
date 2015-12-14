@@ -2,8 +2,6 @@
 require "sketchup.rb"
 require "fileutils"
 $rads_2_degs = -57.29578
-$curve_debug = false
-$line_debug  = false
 
 def write_point(p)
   $out_file.puts("10\n  %.3f" % (p.x.to_f * $stl_conv))
@@ -19,7 +17,6 @@ end
 def close_polyline()
   $out_file.puts(" 0\nSEQEND") # Close off polyline if open
   $in_polyline = false
-  # $line_debug && puts("    close")
 end
 
 def export_component(c, folder)
@@ -63,7 +60,6 @@ def export_component(c, folder)
                 $out_file.puts("40\n  "+(curve.radius.to_f * $stl_conv).to_s)
               else
                 # Curve is an arc
-                $curve_debug && puts("    ARC " << centrepoint.to_s)
                 curve_a = curve.edges.first.start.position.transform!(t)
                 curve_b = curve.edges[curve.edges.length/2].start.position.transform!(t)
                 curve_c = curve.edges.last.end.position.transform!(t)
@@ -74,10 +70,6 @@ def export_component(c, folder)
                 a_b >  180 && a_b -= 360
                 a_b < -180 && a_b += 360
 
-                $curve_debug && puts("    a          %.3f" % angle_a)
-                $curve_debug && puts("    b          %.3f" % angle_b)
-                $curve_debug && puts("    c          %.3f" % angle_c)
-                $curve_debug && puts("    a_b        %.3f" % a_b)
                 if (a_b <= 0)
                   start_angle = angle_c
                   end_angle   = angle_a
@@ -92,24 +84,17 @@ def export_component(c, folder)
                 $out_file.puts("50\n  %.3f" % (start_angle + 90))
                 $out_file.puts("51\n  %.3f" % (end_angle + 90))
 
-                $curve_debug && puts("    start      %.3f" % (start_angle))
-                $curve_debug && puts("    mid        %.3f" % (angle_b))
-                $curve_debug && puts("    end        %.3f" % (end_angle))
-                $curve_debug && puts("")
               end
             end
             old_curve = curve
           else
             unless $in_polyline
-              $line_debug && puts("    start polyline")
               $out_file.puts(" 0\nPOLYLINE\n8\nlayer0\n66\n1\n70\n8\n")
               write_point([0, 0, 0])
               write_vertex(start_point)
-              $line_debug && puts("      " << start_point.to_s)
               $in_polyline = true
             end
             write_vertex(end_point)
-            $line_debug && puts("      " << end_point.to_s)
           end
         end
       end
