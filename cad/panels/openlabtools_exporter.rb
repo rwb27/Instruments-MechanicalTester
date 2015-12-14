@@ -1,13 +1,19 @@
 # OpenLabTools - export script
 require "sketchup.rb"
 require "fileutils"
-$curve_debug = false
+$rads_2_degs = -57.29578
+$curve_debug = true
 $line_debug  = false
 
 def write_point(p)
   $out_file.puts("10\n  %.3f" % (p.x.to_f * $stl_conv))
   $out_file.puts("20\n  %.3f" % (p.y.to_f * $stl_conv))
   $out_file.puts("30\n  %.3f" % (p.z.to_f * $stl_conv))
+end
+
+def write_vertex(v)
+  $out_file.puts("  0\nVERTEX\n8\nlayer0")
+  write_point(v)
 end
 
 def export_component(c, folder)
@@ -24,14 +30,10 @@ def export_component(c, folder)
   t = Geom::Transformation.new([0,0,0], normal)
   $out_file.puts(" 0\nSECTION\n 2\nHEADER\n 9\n$MEASUREMENT\n 70\n 2\n 0\nENDSEC\n 0\nSECTION\n 2\nENTITIES")
   old_curve = 0
-  $face_count = 0
-  $line_count = 0
-  $arc_count = 0
-  $circle_count = 0
   in_polyline = false
   faces.each do |face|
     unless face.normal.perpendicular? normal
-      $face_count += 1
+    # if face == faces.last
       face.loops.each do |aloop|
         aloop.edges.each do |anedge|
           reversed_edge = anedge.reversed_in? face # Check to see if edge is reversed
@@ -44,63 +46,52 @@ def export_component(c, folder)
           end
           if anedge.curve && anedge.curve.is_a?(Sketchup::ArcCurve) # Could be an arc or a circle
             curve = anedge.curve
-            centrepoint =  curve.center.transform! t
-            # The arc angles are relative to local arc x axis
-            x_axis_angle = Math.atan2(anedge.curve.xaxis.transform!(t).x,
-                                      anedge.curve.xaxis.transform!(t).y)
-            y_axis_angle = Math.atan2(anedge.curve.yaxis.transform!(t).x,
-                                      anedge.curve.yaxis.transform!(t).y)
-            start_angle = (curve.start_angle - x_axis_angle).to_f * 57.29578 + 90
-            end_angle   = (curve.end_angle   - x_axis_angle).to_f * 57.29578 + 90
-            if in_polyline
-              $out_file.puts(" 0\nSEQEND") # Close off polyline if open
-              in_polyline = false
-              $line_debug && puts("    close")
-            end
             if (old_curve != curve) # Check if pointer is for same curve
-              if (end_angle - start_angle >= 360) # Identify a circle - total angle = 2 pi radians
+              if in_polyline
+                $out_file.puts(" 0\nSEQEND") # Close off polyline if open
+                in_polyline = false
+                $line_debug && puts("    close")
+              end
+              centrepoint =  curve.center.transform! t
+              if (((curve.end_angle - curve.start_angle) * $rads_2_degs).abs >= 360)
+                # Curve is a circle
                 $out_file.puts(" 0\nCIRCLE\n8\nlayer0\n66\n1")
                 write_point(centrepoint)
                 $out_file.puts("40\n  "+(curve.radius.to_f * $stl_conv).to_s)
-                $circle_count += 1
               else
+                # Curve is an arc
                 $curve_debug && puts("    ARC " << centrepoint.to_s)
-                reversed_curve   = (curve.normal.transform!(t) == face.normal.transform!(t).reverse)
-                reversed_curve_2 = (curve.normal.transform!(t) == normal.transform!(t).reverse)
-                reversed_face    = (face.normal.transform!(t) == normal.transform!(t).reverse)
-                $curve_debug && reversed_edge  && puts("    REVERSED EDGE")
-                $curve_debug && reversed_curve && puts("    REVERSED CURVE")
-                $curve_debug && reversed_curve && puts("    REVERSED CURVE 2")
-                $curve_debug && reversed_face  && puts("    REVERSED FACE")
-                flip = false
-                (reversed_edge)  &&  (reversed_face)   && flip = true
-                !(reversed_edge) &&  (reversed_curve)  && (reversed_curve_2)   && !(reversed_face) && flip = true
-                if flip
-                  $curve_debug && puts("    FLIPPING CURVE")
-                  new_end_angle = start_angle
-                  start_angle = start_angle + (start_angle - end_angle)
-                  end_angle = new_end_angle
+                curve_a = curve.edges.first.start.position.transform!(t)
+                curve_b = curve.edges[curve.edges.length/2].start.position.transform!(t)
+                curve_c = curve.edges.last.end.position.transform!(t)
+                angle_a = Math.atan2((curve_a - centrepoint).x, (curve_a - centrepoint).y) * $rads_2_degs
+                angle_b = Math.atan2((curve_b - centrepoint).x, (curve_b - centrepoint).y) * $rads_2_degs
+                angle_c = Math.atan2((curve_c - centrepoint).x, (curve_c - centrepoint).y) * $rads_2_degs
+                a_b = (angle_b - angle_a)
+                a_b >  180 && a_b -= 360
+                a_b < -180 && a_b += 360
+
+                $curve_debug && puts("    a          %.3f" % angle_a)
+                $curve_debug && puts("    b          %.3f" % angle_b)
+                $curve_debug && puts("    c          %.3f" % angle_c)
+                $curve_debug && puts("    a_b        %.3f" % a_b)
+                if (a_b <= 0)
+                  start_angle = angle_c
+                  end_angle   = angle_a
+                else
+                  start_angle = angle_a
+                  end_angle   = angle_c
                 end
+
                 $out_file.puts(" 0\nARC\n8\nlayer0\n66\n1")
                 write_point(centrepoint)
                 $out_file.puts("40\n  "+(curve.radius.to_f * $stl_conv).to_s)
-                $out_file.puts("50\n  %.3f" % start_angle)
-                $out_file.puts("51\n  %.3f" % end_angle)
-                $arc_count += 1
-                old_start_angle = curve.start_angle.to_f * 57.29578 + 90
-                old_end_angle   = curve.end_angle.to_f * 57.29578 + 90
-                $curve_debug && puts("    x axis - x %.3f" % anedge.curve.xaxis.x.to_s)
-                $curve_debug && puts("    x axis - y %.3f" % anedge.curve.xaxis.y.to_s)
-                $curve_debug && puts("    x axis - z %.3f" % anedge.curve.xaxis.z.to_s)
-                $curve_debug && puts("    y axis - x %.3f" % anedge.curve.yaxis.x.to_s)
-                $curve_debug && puts("    y axis - y %.3f" % anedge.curve.yaxis.y.to_s)
-                $curve_debug && puts("    y axis - z %.3f" % anedge.curve.yaxis.z.to_s)
-                $curve_debug && puts("    x_axis     %.3f" % (x_axis_angle * 57.29578))
-                $curve_debug && puts("    y_axis     %.3f" % (y_axis_angle * 57.29578))
-                $curve_debug && puts("    old_start  %.3f" % old_start_angle)
-                $curve_debug && puts("    old_end    %.3f" % old_end_angle)
-                $curve_debug && puts("    start      %.3f" % start_angle)
-                $curve_debug && puts("    end        %.3f" % end_angle)
+                $out_file.puts("50\n  %.3f" % (start_angle + 90))
+                $out_file.puts("51\n  %.3f" % (end_angle + 90))
+
+                $curve_debug && puts("    start      %.3f" % (start_angle))
+                $curve_debug && puts("    mid        %.3f" % (angle_b))
+                $curve_debug && puts("    end        %.3f" % (end_angle))
                 $curve_debug && puts("")
               end
             end
@@ -110,15 +101,13 @@ def export_component(c, folder)
             unless in_polyline
               $line_debug && puts("    start polyline")
               $out_file.puts(" 0\nPOLYLINE\n8\nlayer0\n66\n1\n70\n8\n")
-              $out_file.puts("10\n  0.0\n20\n  0.0\n30\n  0.0\n  0\nVERTEX\n8\nlayer0")
-              write_point(start_point)
+              write_point([0, 0, 0])
+              write_vertex(start_point)
               $line_debug && puts("      " << start_point.to_s)
               in_polyline = true
             end
-            $out_file.puts("0\nVERTEX\n8\nlayer0")
-            write_point(end_point)
+            write_vertex(end_point)
             $line_debug && puts("      " << end_point.to_s)
-            $line_count += 1
           end
         end
       end
@@ -128,16 +117,14 @@ def export_component(c, folder)
   end
   $out_file.puts(" 0\nENDSEC\n 0\nEOF")
   $out_file.close
-  $face_count   != 0 && puts("    " + $face_count.to_s   + " faces exported")
-  $line_debug && $line_count   != 0 && puts("    " + $line_count.to_s   + " lines exported")
-  $curve_debug && $arc_count    != 0 && puts("    " + $arc_count.to_s    + " arcs exported")
-  $curve_debug && $circle_count != 0 && puts("    " + $circle_count.to_s + " circles exported")
 end
 
 def export
   SKETCHUP_CONSOLE.clear
-  defined? $out_file && $out_file.close
-
+  begin
+    $out_file.close
+  rescue
+  end
 
   puts "running OpenLabTools export script"
   model = Sketchup.active_model
