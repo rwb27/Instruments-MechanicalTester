@@ -2,7 +2,7 @@
 require "sketchup.rb"
 require "fileutils"
 $rads_2_degs = -57.29578
-$curve_debug = true
+$curve_debug = false
 $line_debug  = false
 
 def write_point(p)
@@ -14,6 +14,12 @@ end
 def write_vertex(v)
   $out_file.puts("  0\nVERTEX\n8\nlayer0")
   write_point(v)
+end
+
+def close_polyline()
+  $out_file.puts(" 0\nSEQEND") # Close off polyline if open
+  $in_polyline = false
+  # $line_debug && puts("    close")
 end
 
 def export_component(c, folder)
@@ -30,12 +36,13 @@ def export_component(c, folder)
   t = Geom::Transformation.new([0,0,0], normal)
   $out_file.puts(" 0\nSECTION\n 2\nHEADER\n 9\n$MEASUREMENT\n 70\n 2\n 0\nENDSEC\n 0\nSECTION\n 2\nENTITIES")
   old_curve = 0
-  in_polyline = false
+  $in_polyline = false
   faces.each do |face|
     unless face.normal.perpendicular? normal
     # if face == faces.last
       face.loops.each do |aloop|
         aloop.edges.each do |anedge|
+          $in_polyline && close_polyline
           reversed_edge = anedge.reversed_in? face # Check to see if edge is reversed
           if reversed_edge
             start_point = anedge.end.position.transform! t
@@ -46,12 +53,8 @@ def export_component(c, folder)
           end
           if anedge.curve && anedge.curve.is_a?(Sketchup::ArcCurve) # Could be an arc or a circle
             curve = anedge.curve
+            $in_polyline && close_polyline
             if (old_curve != curve) # Check if pointer is for same curve
-              if in_polyline
-                $out_file.puts(" 0\nSEQEND") # Close off polyline if open
-                in_polyline = false
-                $line_debug && puts("    close")
-              end
               centrepoint =  curve.center.transform! t
               if (((curve.end_angle - curve.start_angle) * $rads_2_degs).abs >= 360)
                 # Curve is a circle
@@ -96,23 +99,21 @@ def export_component(c, folder)
               end
             end
             old_curve = curve
-            in_polyline = false
           else
-            unless in_polyline
+            unless $in_polyline
               $line_debug && puts("    start polyline")
               $out_file.puts(" 0\nPOLYLINE\n8\nlayer0\n66\n1\n70\n8\n")
               write_point([0, 0, 0])
               write_vertex(start_point)
               $line_debug && puts("      " << start_point.to_s)
-              in_polyline = true
+              $in_polyline = true
             end
             write_vertex(end_point)
             $line_debug && puts("      " << end_point.to_s)
           end
         end
       end
-      in_polyline && $out_file.puts(" 0\nSEQEND") # Close off polyline if open
-      in_polyline && $line_debug && puts("      close")
+      $in_polyline && close_polyline
     end
   end
   $out_file.puts(" 0\nENDSEC\n 0\nEOF")
