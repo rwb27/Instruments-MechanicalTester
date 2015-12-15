@@ -106,39 +106,60 @@ def export_component(c, folder)
 end
 
 def export
-  SKETCHUP_CONSOLE.clear
-  begin
-    $out_file.close
-  rescue
-  end
-
+  SKETCHUP_CONSOLE.clear # Clear the console window
   puts "running OpenLabTools export script"
   model = Sketchup.active_model
-
-  # Set to front view and save any unsaved changes
+  model_path = model.path[/.+\\/] # Path to Sketchup model (in Git repo) - regex matches to final "\"
   pages = model.pages
-  pages.selected_page = pages[0]
-  # Exit any edit instances
-  loop do
-    break unless model.close_active
-  end
-  if model.modified?
-    model.save
-    puts "saving model"
-  end
 
   # Save script in to Git controlled directory each time it is run
   # This makes it easy to version control the script and helps ensure
   # changes in the script are committed with changes to the output.
   puts "saving export script in version controlled folder"
-  model_path = model.path[/.+\\/] # Path to Sketchup model (in Git repo)
-  FileUtils.cp(__FILE__, model_path << "panels\\")
-  # Open parts list file
-  parts_list = File.open(model_path + "parts_list.txt","w")
+  FileUtils.cp(__FILE__, model_path + "panels\\")
+
   # Clear existing .dxf files so if panel names have changed old files are overwritten
+  begin # Ensure there's no open .dxf file
+    $out_file.close
+  rescue
+  end
   puts "deleting old .dxf files"
-  model_path << "dxf_files\\"
-  Dir.foreach(model_path) {|f| fn = File.join(model_path, f); File.delete(fn) if f != '.' && f != '..'}
+  dxf_path = model_path + "panels\\dxf_files\\"
+  Dir.foreach(dxf_path) {|f| fn = File.join(dxf_path, f); File.delete(fn) if f != '.' && f != '..'}
+
+  # Clear existing screenshots so if scene names have changed old files are overwritten
+  puts "deleting old screenshots"
+  image_path = model_path + "renders\\"
+  Dir.foreach(image_path) {|f| fn = File.join(image_path, f); File.delete(fn) if f != '.' && f != '..'}
+
+  # Export screenshots
+  i = 0
+  pages.each do |page|
+    puts "exporting screenshot - " + page.name.downcase.tr(" ","_")
+    pages.selected_page = page
+    keys = {
+      :filename => model_path + "renders\\" + i.to_s + "_" + page.name.downcase.tr(" ","_") + ".png",
+      :width => 1280,
+      :height => 720,
+      :antialias => true,
+      :compression => 0.9,
+      :transparent => true
+    }
+    model.active_view.write_image keys
+    i += 1
+  end
+
+  pages.selected_page = pages[0] # Set to front view
+  loop do # Exit any edit instances
+    break unless model.close_active
+  end
+  if model.modified? # Save any unsaved changes
+    puts "saving model"
+    model.save
+  end
+
+  # Open parts list file
+  parts_list = File.open(model_path + "panels\\parts_list.txt","w")
 
   # Iterate through components in model creating parts list and exporting panel outlines
   puts "creating parts list and exporting panel outlines"
@@ -152,7 +173,7 @@ def export
       parts_list << "x "
       parts_list <<  c.name
       parts_list << "\n"
-      c.name[0,8] == 'Panel - ' && export_component(c, model_path)
+      c.name[0,8] == 'Panel - ' && export_component(c, dxf_path)
     end
     i += 1
   end
