@@ -8,7 +8,9 @@
 1x Assembly - Heater Chamber Top
 1x Assembly - Humidity Tube Inlet
 1x Assembly - Humidity Tube Outlet
+1x Assembly - Main Instrument
 1x Assembly - Materials Testing
+2x Assembly - Motor, Lead Screw and Bearing
 1x Assembly - Rear Face
 1x Assembly - Rear Module
 1x Assembly - Rear Module Back Face
@@ -17,8 +19,8 @@
 2x Assembly - Side Wall
 1x Assembly - Top Face
 1x Assembly Front Enclosure
-1x Choc Bloc
 1x Fan Blades
+4x Fixings - M2.5 PAN
 16x Fixings - M3 Button Screw
 13x Fixings - M3 Button Screw#1
 1x Fixings - M3 Button Screw#2
@@ -29,18 +31,17 @@
 21x Fixings - M3 cap screw and nut
 8x Fixings - M3 nut
 2x Fixings - M3 wing nut
+2x Fixings - M4 CSK
+2x Fixings - M4 CSK#1
 2x Fixings - M4 nut
 2x Fixings - M8 half nut
 1x Fixings - M8 nut
 1x Flap - Flap Panel
-1x Flap - Servo
 1x Flap - Servo Horn
 1x Fogger Wire
 2x Foot - Back
 2x Foot - Front
 1x Front Face
-1x Gantry Spacer
-1x HDMI Flat 90
 1x HDMI Plug
 1x HDMI Port
 1x Heater Elements Alternative Config with Plates
@@ -48,17 +49,9 @@
 1x Humidity End Cap
 3x Humidity Rubber Bumper
 1x Humidity Rubber Bumper#1
-1x Humidity Rubber Bumper#2
-1x Humidity Support
 1x Humidity Tube
-4x M2.5 PAN
-2x M4 CSK
-2x M4 CSK#1
 1x M8 Lead Screw
-1x Main Instrument
 2x Motor Wire
-2x Motor and Screw
-1x Nema 17 stepper motor
 1x OpenBeam - 120mm
 18x OpenBeam - 210mm
 4x OpenBeam - 240mm
@@ -79,10 +72,13 @@
 1x Panel - Fan Mounting
 1x Panel - Front Door
 1x Panel - Front Frame
+1x Panel - Gantry Spacer
 1x Panel - HDMI support 1
 1x Panel - HDMI support 2
 1x Panel - Heater Chamber Bottom
 1x Panel - Heater Chamber Top
+1x Panel - Humidity Chamber Top Face
+1x Panel - Humidity Support
 1x Panel - Inner Back Wall
 1x Panel - NEMA 17 mount
 1x Panel - NEMA 23 mount
@@ -104,14 +100,17 @@
 2x Part - 60mm Fan
 1x Part - Arduino
 2x Part - Arduino Shield
+1x Part - Choc Bloc
+1x Part - Flap Servo
+1x Part - HDMI Flat 90
+1x Part - Nema 17 stepper motor
 1x Part - PSU
-1x Raspberry Pi - Model B
-1x Relay Board
-1x Rpi Camera
-1x Servo Motor
-1x Servo Wire
-1x Shaft Coupler
-1x Small Fogger
+1x Part - Raspberry Pi Camera
+1x Part - Raspberry Pi Model B
+1x Part - Relay Board
+1x Part - Servo Motor
+1x Part - Shaft Coupler
+1x Part - Small Fogger
 4x Tube - Coupler
 2x Tube - Elbow
 1x Tube - Inlet Horizontal
