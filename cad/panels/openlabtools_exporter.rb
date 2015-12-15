@@ -1,12 +1,13 @@
 # OpenLabTools - export script
 require "sketchup.rb"
 require "fileutils"
-$rads_2_degs = -57.29578
+$rads_2_degs = -57.29578 # Radians to degrees conversion
+$inch_2_mm   =  25.4     # Inches to mm conversion
 
 def write_point(p)
-  $out_file.puts("10\n  %.3f" % (p.x.to_f * $stl_conv))
-  $out_file.puts("20\n  %.3f" % (p.y.to_f * $stl_conv))
-  $out_file.puts("30\n  %.3f" % (p.z.to_f * $stl_conv))
+  $out_file.puts("10\n  %.3f" % (p.x.to_f * $inch_2_mm))
+  $out_file.puts("20\n  %.3f" % (p.y.to_f * $inch_2_mm))
+  $out_file.puts("30\n  %.3f" % (p.z.to_f * $inch_2_mm))
 end
 
 def write_vertex(v)
@@ -19,16 +20,36 @@ def close_polyline()
   $in_polyline = false
 end
 
+def export_screenshots_and_save()
+  pages = $model.pages
+  image_path = $model_path + "renders\\"
+  Dir.foreach(image_path) {|f| fn = File.join(image_path, f); File.delete(fn) if f != '.' && f != '..'}
+  loop do # Exit any edit instances
+    break unless $model.close_active
+  end
+  i = 0
+  pages.each do |page|
+    puts "exporting screenshot - " + page.name.downcase.tr(" ","_")
+    pages.selected_page = page
+    keys = {:filename => $model_path + "renders\\" + i.to_s + "_" + page.name.downcase.tr(" ","_") + ".png",
+      :width => 1280, :height => 720, :antialias => true, :compression => 0.9, :transparent => true}
+    $model.active_view.write_image keys
+    i += 1
+  end
+  pages.selected_page = pages[0] # Set to front view
+  if $model.modified? # Save any unsaved changes
+    puts "saving $model"
+    $model.save
+  end
+end
+
 def export_component(c, folder)
   panel_name = c.name[8, c.name.length].downcase.tr(" ","_") # Convert to snake case
   puts "  exporting " << panel_name
-  $stl_conv = 25.4 # Inches to mm conversion
   $out_file = File.new(folder + panel_name + ".dxf", "w")
   faces = []
-  c.entities.each do |e|
-    e.is_a?(Sketchup::Face) && faces << e
-  end
-  faces = faces.sort_by { |f| f.area }
+  c.entities.each {|e| (e.is_a?(Sketchup::Face) && faces << e)} # Compile list of faces
+  faces = faces.sort_by {|f| f.area} # Sort faces in ascending area
   normal = faces.last.normal # Use largest face normal as local z axis
   t = Geom::Transformation.new([0,0,0], normal)
   $out_file.puts(" 0\nSECTION\n 2\nHEADER\n 9\n$MEASUREMENT\n 70\n 2\n 0\nENDSEC\n 0\nSECTION\n 2\nENTITIES")
@@ -57,7 +78,7 @@ def export_component(c, folder)
                 # Curve is a circle
                 $out_file.puts(" 0\nCIRCLE\n8\nlayer0\n66\n1")
                 write_point(centrepoint)
-                $out_file.puts("40\n  %.3f" % (curve.radius.to_f * $stl_conv).to_s)
+                $out_file.puts("40\n  %.3f" % (curve.radius.to_f * $inch_2_mm).to_s)
               else
                 # Curve is an arc
                 curve_a = curve.edges.first.start.position.transform!(t)
@@ -69,7 +90,6 @@ def export_component(c, folder)
                 a_b = (angle_b - angle_a)
                 a_b >  180 && a_b -= 360
                 a_b < -180 && a_b += 360
-
                 if (a_b <= 0)
                   start_angle = angle_c
                   end_angle   = angle_a
@@ -80,7 +100,7 @@ def export_component(c, folder)
 
                 $out_file.puts(" 0\nARC\n8\nlayer0\n66\n1")
                 write_point(centrepoint)
-                $out_file.puts("40\n  %.3f" % (curve.radius.to_f * $stl_conv).to_s)
+                $out_file.puts("40\n  %.3f" % (curve.radius.to_f * $inch_2_mm).to_s)
                 $out_file.puts("50\n  %.3f" % (start_angle + 90))
                 $out_file.puts("51\n  %.3f" % (end_angle + 90))
 
@@ -108,15 +128,15 @@ end
 def export
   SKETCHUP_CONSOLE.clear # Clear the console window
   puts "running OpenLabTools export script"
-  model = Sketchup.active_model
-  model_path = model.path[/.+\\/] # Path to Sketchup model (in Git repo) - regex matches to final "\"
-  pages = model.pages
+  $model = Sketchup.active_model
+  $model_path = $model.path[/.+cad\\/] # Path to Sketchup $model (in Git repo) - regex matches to final "\"
+  export_screenshots_and_save
 
   # Save script in to Git controlled directory each time it is run
   # This makes it easy to version control the script and helps ensure
   # changes in the script are committed with changes to the output.
   puts "saving export script in version controlled folder"
-  FileUtils.cp(__FILE__, model_path + "panels\\")
+  FileUtils.cp(__FILE__, $model_path + "panels\\")
 
   # Clear existing .dxf files so if panel names have changed old files are overwritten
   begin # Ensure there's no open .dxf file
@@ -124,46 +144,15 @@ def export
   rescue
   end
   puts "deleting old .dxf files"
-  dxf_path = model_path + "panels\\dxf_files\\"
+  dxf_path = $model_path + "panels\\dxf_files\\"
   Dir.foreach(dxf_path) {|f| fn = File.join(dxf_path, f); File.delete(fn) if f != '.' && f != '..'}
 
-  # Clear existing screenshots so if scene names have changed old files are overwritten
-  puts "deleting old screenshots"
-  image_path = model_path + "renders\\"
-  Dir.foreach(image_path) {|f| fn = File.join(image_path, f); File.delete(fn) if f != '.' && f != '..'}
-
-  # Export screenshots
-  i = 0
-  pages.each do |page|
-    puts "exporting screenshot - " + page.name.downcase.tr(" ","_")
-    pages.selected_page = page
-    keys = {
-      :filename => model_path + "renders\\" + i.to_s + "_" + page.name.downcase.tr(" ","_") + ".png",
-      :width => 1280,
-      :height => 720,
-      :antialias => true,
-      :compression => 0.9,
-      :transparent => true
-    }
-    model.active_view.write_image keys
-    i += 1
-  end
-
-  pages.selected_page = pages[0] # Set to front view
-  loop do # Exit any edit instances
-    break unless model.close_active
-  end
-  if model.modified? # Save any unsaved changes
-    puts "saving model"
-    model.save
-  end
-
   # Open parts list file
-  parts_list = File.open(model_path + "panels\\parts_list.txt","w")
+  parts_list = File.open($model_path + "panels\\parts_list.txt","w")
 
-  # Iterate through components in model creating parts list and exporting panel outlines
+  # Iterate through components in $model creating parts list and exporting panel outlines
   puts "creating parts list and exporting panel outlines"
-  components = model.definitions
+  components = $model.definitions
   components = components.sort_by { |c| c.name }
   i = 0
   while i < components.length do
