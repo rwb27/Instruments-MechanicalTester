@@ -53,10 +53,10 @@
 1x M8 Lead Screw
 2x Motor Wire
 1x OpenBeam - 120mm
-18x OpenBeam - 210mm
+17x OpenBeam - 210mm
 4x OpenBeam - 240mm
 4x OpenBeam - 300mm
-6x OpenBeam - 60mm
+4x OpenBeam - 60mm
 4x OpenBeam - 90mm
 1x OpenBeam Bearing Mount
 1x Panel - Back Face
