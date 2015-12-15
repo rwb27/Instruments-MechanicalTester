@@ -57,7 +57,7 @@ def export_component(c, folder)
                 # Curve is a circle
                 $out_file.puts(" 0\nCIRCLE\n8\nlayer0\n66\n1")
                 write_point(centrepoint)
-                $out_file.puts("40\n  "+(curve.radius.to_f * $stl_conv).to_s)
+                $out_file.puts("40\n  %.3f" % (curve.radius.to_f * $stl_conv).to_s)
               else
                 # Curve is an arc
                 curve_a = curve.edges.first.start.position.transform!(t)
@@ -80,7 +80,7 @@ def export_component(c, folder)
 
                 $out_file.puts(" 0\nARC\n8\nlayer0\n66\n1")
                 write_point(centrepoint)
-                $out_file.puts("40\n  "+(curve.radius.to_f * $stl_conv).to_s)
+                $out_file.puts("40\n  %.3f" % (curve.radius.to_f * $stl_conv).to_s)
                 $out_file.puts("50\n  %.3f" % (start_angle + 90))
                 $out_file.puts("51\n  %.3f" % (end_angle + 90))
 
