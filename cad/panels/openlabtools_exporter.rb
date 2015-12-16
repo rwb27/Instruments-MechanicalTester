@@ -31,9 +31,11 @@ def export_screenshots_and_save()
   pages.each do |page|
     puts "exporting screenshot - " + page.name.downcase.tr(" ","_")
     pages.selected_page = page
-    keys = {:filename => $model_path + "renders\\" + i.to_s + "_" + page.name.downcase.tr(" ","_") + ".png",
-      :width => 1280, :height => 720, :antialias => true, :compression => 0.9, :transparent => true}
-    $model.active_view.write_image keys
+    image_name = $model_path + "renders\\" + i.to_s + "_" + page.name.downcase.tr(" ","_")
+    $model.active_view.write_image({:filename => image_name + ".png",
+      :width => 1280, :height => 720, :antialias => true, :compression => 0.9, :transparent => true})
+    $model.active_view.write_image({:filename => image_name + "_small.png",
+      :width => 450, :height => 300, :antialias => true, :compression => 0.9, :transparent => true})
     i += 1
   end
   pages.selected_page = pages[0] # Set to front view
