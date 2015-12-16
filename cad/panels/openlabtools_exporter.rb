@@ -35,7 +35,7 @@ def export_screenshots_and_save()
     $model.active_view.write_image({:filename => image_name + ".png",
       :width => 1280, :height => 720, :antialias => true, :compression => 0.9, :transparent => true})
     $model.active_view.write_image({:filename => image_name + "_small.png",
-      :width => 350, :height => 300, :antialias => true, :compression => 0.9, :transparent => true})
+      :width => 200, :height => 260, :antialias => true, :compression => 0.9, :transparent => true})
     i += 1
   end
   pages.selected_page = pages[0] # Set to front view
