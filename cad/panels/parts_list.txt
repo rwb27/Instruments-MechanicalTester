@@ -51,12 +51,13 @@
 1x Humidity Rubber Bumper#1
 1x Humidity Tube
 1x M8 Lead Screw
+1x Motor
 2x Motor Wire
 1x OpenBeam - 120mm
-18x OpenBeam - 210mm
+17x OpenBeam - 210mm
 4x OpenBeam - 240mm
 4x OpenBeam - 300mm
-6x OpenBeam - 60mm
+4x OpenBeam - 60mm
 4x OpenBeam - 90mm
 1x OpenBeam Bearing Mount
 1x Panel - Back Face
@@ -68,6 +69,7 @@
 1x Panel - Bottom Double Glazing Middle
 1x Panel - Bottom Face
 1x Panel - Camera Mounting Plate
+1x Panel - DC Motor Mount
 2x Panel - Delrin Plate
 1x Panel - Fan Mounting
 1x Panel - Front Door
