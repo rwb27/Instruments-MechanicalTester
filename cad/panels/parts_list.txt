@@ -21,19 +21,20 @@
 1x Assembly Front Enclosure
 1x Fan Blades
 4x Fixings - M2.5 PAN
-16x Fixings - M3 Button Screw
+17x Fixings - M3 Button Screw
 13x Fixings - M3 Button Screw#1
 1x Fixings - M3 Button Screw#2
 1x Fixings - M3 Button Screw#3
-158x Fixings - M3 button screw and nut
-8x Fixings - M3 button screw and nut#2
+160x Fixings - M3 button screw and nut
+6x Fixings - M3 button screw and nut#2
 4x Fixings - M3 button screw and nut#3
 21x Fixings - M3 cap screw and nut
 8x Fixings - M3 nut
 2x Fixings - M3 wing nut
 2x Fixings - M4 CSK
 2x Fixings - M4 CSK#1
-2x Fixings - M4 nut
+4x Fixings - M4 CSK#2
+3x Fixings - M4 nut
 2x Fixings - M8 half nut
 1x Fixings - M8 nut
 1x Flap - Flap Panel
@@ -53,7 +54,7 @@
 1x M8 Lead Screw
 1x Motor
 2x Motor Wire
-1x OpenBeam - 120mm
+1x OpenBeam - 150mm
 17x OpenBeam - 210mm
 4x OpenBeam - 240mm
 4x OpenBeam - 300mm
