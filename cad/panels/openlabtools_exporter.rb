@@ -20,7 +20,7 @@ def close_polyline()
   $in_polyline = false
 end
 
-def export_screenshots_and_save()
+def export_screenshots_and_save(small)
   pages = $model.pages
   image_path = $model_path + "renders\\"
   Dir.foreach(image_path) {|f| fn = File.join(image_path, f); File.delete(fn) if f != '.' && f != '..'}
@@ -34,7 +34,7 @@ def export_screenshots_and_save()
     image_name = $model_path + "renders\\" + i.to_s + "_" + page.name.downcase.tr(" ","_")
     $model.active_view.write_image({:filename => image_name + ".png",
       :width => 1280, :height => 720, :antialias => true, :compression => 0.9, :transparent => true})
-    $model.active_view.write_image({:filename => image_name + "_small.png",
+    small && $model.active_view.write_image({:filename => image_name + "_small.png",
       :width => 420, :height => 520, :antialias => true, :compression => 0.9, :transparent => true})
     i += 1
   end
@@ -43,6 +43,12 @@ def export_screenshots_and_save()
     puts "saving $model"
     $model.save
   end
+
+  # Save script in to Git controlled directory each time it is run
+  # This makes it easy to version control the script and helps ensure
+  # changes in the script are committed with changes to the output.
+  puts "saving export script in version controlled folder"
+  FileUtils.cp(__FILE__, $model_path + "panels\\")
 end
 
 def export_component(c, folder)
@@ -128,18 +134,7 @@ def export_component(c, folder)
 end
 
 def export
-  SKETCHUP_CONSOLE.clear # Clear the console window
-  puts "running OpenLabTools export script"
-  $model = Sketchup.active_model
-  $model_path = $model.path[/.+cad\\/] # Path to Sketchup $model (in Git repo) - regex matches to final "\"
-  export_screenshots_and_save
-
-  # Save script in to Git controlled directory each time it is run
-  # This makes it easy to version control the script and helps ensure
-  # changes in the script are committed with changes to the output.
-  puts "saving export script in version controlled folder"
-  FileUtils.cp(__FILE__, $model_path + "panels\\")
-
+  render_all
   # Clear existing .dxf files so if panel names have changed old files are overwritten
   begin # Ensure there's no open .dxf file
     $out_file.close
@@ -172,9 +167,28 @@ def export
   puts "export compete"
 end
 
+def render_all
+  render_small = true
+  render(render_small)
+end
+
+def render_large
+  render_small = false
+  render(render_small)
+end
+
+def render(small)
+  SKETCHUP_CONSOLE.clear # Clear the console window
+  puts "running OpenLabTools export script"
+  $model = Sketchup.active_model
+  $model_path = $model.path[/.+\\/] # Path to Sketchup $model (in Git repo) - regex matches to final "\"
+  puts $model_path
+  export_screenshots_and_save(small)
+end
+
 # Add menu item for running the script
-if(not $openlabtools_loaded)
-  tool_menu_index = 19 # Position to insert menu option
+unless $openlabtools_loaded
   UI.menu("Tools").add_item("OpenLabTools - Export Panels") {export}
+  UI.menu("Tools").add_item("OpenLabTools - Render Screenshots") {render_large}
 end
 $openlabtools_loaded = true
