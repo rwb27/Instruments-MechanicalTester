@@ -78,7 +78,7 @@ def export_component(c, folder)
             start_point = anedge.start.position.transform! t
             end_point = anedge.end.position.transform! t
           end
-          if anedge.curve && anedge.curve.is_a?(Sketchup::ArcCurve) # Could be an arc or a circle
+          if anedge.curve && !anedge.curve.is_polygon? && anedge.curve.is_a?(Sketchup::ArcCurve) # Could be an arc or a circle
             curve = anedge.curve
             $in_polyline && close_polyline
             if (old_curve != curve) # Check if pointer is for same curve
