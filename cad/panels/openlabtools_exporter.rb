@@ -65,8 +65,9 @@ def export_component(c, folder)
   $in_polyline = false
   faces.each do |face|
     unless face.normal.perpendicular? normal
-    # if face == faces.last
-      face.loops.each do |aloop|
+      # if face == faces.last
+      loops = face.loops.sort_by {|l| l.edges.map(&:length).inject(0, &:+)}
+      loops.each do |aloop|
         aloop.edges.each do |anedge|
           $in_polyline && close_polyline
           reversed_edge = anedge.reversed_in? face # Check to see if edge is reversed
