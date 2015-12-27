@@ -31,6 +31,7 @@ def export_screenshots_and_save(small)
   pages.each do |page|
     puts "exporting screenshot - " + page.name.downcase.tr(" ","_")
     pages.selected_page = page
+    $model.active_view.refresh
     image_name = $model_path + "renders\\" + i.to_s + "_" + page.name.downcase.tr(" ","_")
     $model.active_view.write_image({:filename => image_name + ".png",
       :width => 1280, :height => 720, :antialias => true, :compression => 0.9, :transparent => true})
@@ -39,6 +40,7 @@ def export_screenshots_and_save(small)
     i += 1
   end
   pages.selected_page = pages[0] # Set to front view
+  $model.active_view.refresh
   if $model.modified? # Save any unsaved changes
     puts "saving $model"
     $model.save
@@ -165,7 +167,7 @@ def export
     i += 1
   end
   parts_list.close
-  puts "export compete"
+  puts "export complete"
 end
 
 def render_all
