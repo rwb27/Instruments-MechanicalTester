@@ -4,8 +4,6 @@
 1x Assembly - Camera Mount
 1x Assembly - Flap
 1x Assembly - Front Module
-1x Assembly - Heater Chamber Bottom
-1x Assembly - Heater Chamber Top
 1x Assembly - Humidity Tube Inlet
 1x Assembly - Humidity Tube Outlet
 1x Assembly - Main Instrument
@@ -14,8 +12,10 @@
 1x Assembly - Rear Face
 1x Assembly - Rear Module
 1x Assembly - Rear Module Back Face
-1x Assembly - Rear Module Side Wall
-1x Assembly - Rear Module Side Wall#1
+1x Assembly - Rear Module Bottom
+1x Assembly - Rear Module Humidity Side Wall
+1x Assembly - Rear Module PSU Side Wall
+1x Assembly - Rear Module Top
 2x Assembly - Side Wall
 1x Assembly - Top Face
 1x Assembly Front Enclosure
@@ -55,7 +55,7 @@
 2x Motor
 4x Motor Wire
 1x OpenBeam - 150mm
-17x OpenBeam - 210mm
+12x OpenBeam - 210mm
 4x OpenBeam - 240mm
 6x OpenBeam - 300mm
 4x OpenBeam - 60mm
