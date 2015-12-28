@@ -158,7 +158,7 @@ def export
   while i < components.length do
     c = components[i]
     unless c.group? || c.hidden?
-      parts_list << c.count_instances
+      parts_list << c.count_used_instances
       parts_list << "x "
       parts_list <<  c.name
       parts_list << "\n"

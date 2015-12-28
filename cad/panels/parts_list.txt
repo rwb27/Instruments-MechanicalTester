@@ -19,24 +19,24 @@
 2x Assembly - Side Wall
 1x Assembly - Top Face
 1x Assembly Front Enclosure
-1x Fan Blades
+2x Fan Blades
 4x Fixings - M2.5 PAN
-17x Fixings - M3 Button Screw
-13x Fixings - M3 Button Screw#1
-1x Fixings - M3 Button Screw#2
-1x Fixings - M3 Button Screw#3
-160x Fixings - M3 button screw and nut
-6x Fixings - M3 button screw and nut#2
-4x Fixings - M3 button screw and nut#3
-21x Fixings - M3 cap screw and nut
-8x Fixings - M3 nut
+205x Fixings - M3 Button Screw
+48x Fixings - M3 Button Screw#1
+12x Fixings - M3 Button Screw#2
+8x Fixings - M3 Button Screw#3
+188x Fixings - M3 button screw and nut
+12x Fixings - M3 button screw and nut#2
+8x Fixings - M3 button screw and nut#3
+28x Fixings - M3 cap screw and nut
+240x Fixings - M3 nut
 2x Fixings - M3 wing nut
-2x Fixings - M4 CSK
-2x Fixings - M4 CSK#1
-4x Fixings - M4 CSK#2
-3x Fixings - M4 nut
-2x Fixings - M8 half nut
-1x Fixings - M8 nut
+4x Fixings - M4 CSK
+4x Fixings - M4 CSK#1
+8x Fixings - M4 CSK#2
+16x Fixings - M4 nut
+4x Fixings - M8 half nut
+2x Fixings - M8 nut
 1x Flap - Flap Panel
 1x Flap - Servo Horn
 1x Fogger Wire
@@ -51,31 +51,31 @@
 3x Humidity Rubber Bumper
 1x Humidity Rubber Bumper#1
 1x Humidity Tube
-1x M8 Lead Screw
-1x Motor
-2x Motor Wire
+2x M8 Lead Screw
+2x Motor
+4x Motor Wire
 1x OpenBeam - 150mm
 17x OpenBeam - 210mm
 4x OpenBeam - 240mm
-4x OpenBeam - 300mm
+6x OpenBeam - 300mm
 4x OpenBeam - 60mm
-4x OpenBeam - 90mm
-1x OpenBeam Bearing Mount
+8x OpenBeam - 90mm
+2x OpenBeam Bearing Mount
 1x Panel - Back Face
-1x Panel - Baffle Front Plate
-1x Panel - Baffle Mount
-3x Panel - Baffle Spacer
-1x Panel - Bearing Top
+2x Panel - Baffle Front Plate
+2x Panel - Baffle Mount
+6x Panel - Baffle Spacer
+2x Panel - Bearing Top
 2x Panel - Bottom Double Glazing
 1x Panel - Bottom Double Glazing Middle
 1x Panel - Bottom Face
 1x Panel - Camera Mounting Plate
-1x Panel - DC Motor Mount
-2x Panel - Delrin Plate
+2x Panel - DC Motor Mount
+4x Panel - Delrin Plate
 1x Panel - Fan Mounting
 1x Panel - Front Door
 1x Panel - Front Frame
-1x Panel - Gantry Spacer
+2x Panel - Gantry Spacer
 1x Panel - HDMI support 1
 1x Panel - HDMI support 2
 1x Panel - Heater Chamber Bottom
@@ -83,8 +83,8 @@
 1x Panel - Humidity Chamber Top Face
 1x Panel - Humidity Support
 1x Panel - Inner Back Wall
-1x Panel - NEMA 17 mount
-1x Panel - NEMA 23 mount
+2x Panel - NEMA 17 mount
+2x Panel - NEMA 23 mount
 1x Panel - Rear Module Back Double Glazing
 1x Panel - Rear Module Back Face
 1x Panel - Rear Module Electronics
@@ -93,26 +93,26 @@
 1x Panel - Rear Module PSU Side
 1x Panel - Rear Module PSU Side Double Glazing
 2x Panel - Rear Module Top and Bottom Double Glazing
-1x Panel - Side
-2x Panel - Side Double Glazing
+2x Panel - Side
+4x Panel - Side Double Glazing
 1x Panel - Top Double Glazing Back
 1x Panel - Top Double Glazing Front
 1x Panel - Top Double Glazing Middle
 1x Panel - Top Face
-1x Part - 608 skate bearing
+2x Part - 608 skate bearing
 2x Part - 60mm Fan
 1x Part - Arduino
 2x Part - Arduino Shield
 1x Part - Choc Bloc
 1x Part - Flap Servo
 1x Part - HDMI Flat 90
-1x Part - Nema 17 stepper motor
+2x Part - Nema 17 stepper motor
 1x Part - PSU
 1x Part - Raspberry Pi Camera
 1x Part - Raspberry Pi Model B
 1x Part - Relay Board
-1x Part - Servo Motor
-1x Part - Shaft Coupler
+2x Part - Servo Motor
+2x Part - Shaft Coupler
 1x Part - Small Fogger
 4x Tube - Coupler
 2x Tube - Elbow
