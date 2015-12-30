@@ -6,4 +6,4 @@ This is the repository for an open source mechanical testing machine with enviro
 
 Documentation for the instrument, including assembly instructions and discussion are [here](docs/00-getting_started.md).
 
-This instrument was created by @rob-eager in 2014-15 as an MEng final year project and is currently being documented. It also has a Github Pages [page](http://openlabtools.github.io/Instruments-MechanicalTester/) under development.
+This instrument was created by [@rob-eager](https://github.com/rob-eager) in 2014-15 as an MEng final year project and is currently being documented. It also has a Github Pages [page](http://openlabtools.github.io/Instruments-MechanicalTester/) under development.
