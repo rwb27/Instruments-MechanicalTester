@@ -23,7 +23,7 @@ def commentate(x):
     return "\n[//]: # (" + x + ")\n"
 
 
-def navigate(f):
+def navigate(x):
     t = "### %s\n" % title
     for z in files:
         if z == x:
@@ -53,6 +53,7 @@ def titillate(x):
 
 if __name__ == "__main__":
     print "checking for unlisted doc files"
+    os.chdir("../docs")
     current_files = os.listdir(os.getcwd())
     for x in current_files:
         if x[-3:] == ".md" and x not in files:
