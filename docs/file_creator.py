@@ -44,8 +44,8 @@ for x in files:
     f.write("### OpenLabTools Material Tester Documentation\n")
     for z in files:
         if z == x:
-            f.write("**" + titillate(z) + "**\n")
+            f.write("- **" + titillate(z) + "**\n")
         else:
-            f.write("- [\\" + z + "](" + titillate(z) + ")\n")
+            f.write("- ["+ titillate(z) + "](\\" + z + ")\n")
     f.write("\n### " + titillate(x) + "\n")
     f.close()
