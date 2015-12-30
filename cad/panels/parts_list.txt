@@ -32,8 +32,8 @@
 240x Fixings - M3 nut
 2x Fixings - M3 wing nut
 4x Fixings - M4 CSK
+8x Fixings - M4 CSK Motor
 4x Fixings - M4 CSK#1
-8x Fixings - M4 CSK#2
 16x Fixings - M4 nut
 4x Fixings - M8 half nut
 2x Fixings - M8 nut
@@ -51,16 +51,13 @@
 3x Humidity Rubber Bumper
 1x Humidity Rubber Bumper#1
 1x Humidity Tube
-2x M8 Lead Screw
 2x Motor
-4x Motor Wire
 1x OpenBeam - 150mm
 12x OpenBeam - 210mm
 4x OpenBeam - 240mm
 6x OpenBeam - 300mm
 4x OpenBeam - 60mm
 8x OpenBeam - 90mm
-2x OpenBeam Bearing Mount
 1x Panel - Back Face
 2x Panel - Baffle Front Plate
 2x Panel - Baffle Mount
@@ -106,7 +103,9 @@
 1x Part - Choc Bloc
 1x Part - Flap Servo
 1x Part - HDMI Flat 90
+2x Part - M8 Lead Screw
 2x Part - Nema 17 stepper motor
+2x Part - OpenBeam Bearing Mount
 1x Part - PSU
 1x Part - Raspberry Pi Camera
 1x Part - Raspberry Pi Model B
