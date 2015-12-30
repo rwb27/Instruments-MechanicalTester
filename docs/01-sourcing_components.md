@@ -1,4 +1,4 @@
-### OpenLabTools Material Tester Documentation
+### OpenLabTools Materials Tester Documentation
 - [Getting Started](\00-getting_started.md)
 - **Sourcing Components**
 - [Cutting Panels](\02-cutting_panels.md)
@@ -16,3 +16,7 @@
 - [Performance](\10-performance.md)
 
 ### Sourcing Components
+
+[//]: # (END TITLE BLOCK)
+
+Placeholder content
