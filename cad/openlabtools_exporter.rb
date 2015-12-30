@@ -50,7 +50,7 @@ def export_screenshots_and_save(small)
   # This makes it easy to version control the script and helps ensure
   # changes in the script are committed with changes to the output.
   puts "saving export script in version controlled folder"
-  FileUtils.cp(__FILE__, $model_path + "panels\\")
+  FileUtils.cp(__FILE__, $model_path)
 end
 
 def export_component(c, folder)
@@ -148,7 +148,7 @@ def export
   Dir.foreach(dxf_path) {|f| fn = File.join(dxf_path, f); File.delete(fn) if f != '.' && f != '..'}
 
   # Open parts list file
-  parts_list = File.open($model_path + "panels\\parts_list.txt","w")
+  parts_list = File.open($model_path + "parts_list.md", "w")
 
   # Iterate through components in $model creating parts list and exporting panel outlines
   puts "creating parts list and exporting panel outlines"
