@@ -19,4 +19,12 @@
 
 [//]: # (END TITLE BLOCK)
 
-Placeholder content
+Either create a copy or customise
+
+#### Create a copy
+
+Clone Repo
+
+Sketchup
+
+Build Script
