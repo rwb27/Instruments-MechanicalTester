@@ -2,6 +2,7 @@
 2x Assembly - Baffle
 1x Assembly - Bottom Face
 1x Assembly - Camera Mount
+1x Assembly - Electronics
 1x Assembly - Flap
 1x Assembly - Front Module
 1x Assembly - Humidity Tube Inlet
@@ -21,15 +22,15 @@
 1x Assembly Front Enclosure
 2x Fan Blades
 4x Fixings - M2.5 PAN
-205x Fixings - M3 Button Screw
+206x Fixings - M3 Button Screw
 48x Fixings - M3 Button Screw#1
 12x Fixings - M3 Button Screw#2
 8x Fixings - M3 Button Screw#3
-188x Fixings - M3 button screw and nut
+189x Fixings - M3 button screw and nut
 12x Fixings - M3 button screw and nut#2
 8x Fixings - M3 button screw and nut#3
 28x Fixings - M3 cap screw and nut
-240x Fixings - M3 nut
+241x Fixings - M3 nut
 2x Fixings - M3 wing nut
 4x Fixings - M4 CSK
 8x Fixings - M4 CSK Motor
@@ -98,8 +99,9 @@
 1x Panel - Top Face
 2x Part - 608 skate bearing
 2x Part - 60mm Fan
-1x Part - Arduino
-2x Part - Arduino Shield
+1x Part - Arduino DUE
+1x Part - Arduino Metro
+1x Part - Arduino Shield
 1x Part - Choc Bloc
 1x Part - Flap Servo
 1x Part - HDMI Flat 90
