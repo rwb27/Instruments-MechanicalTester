@@ -77,8 +77,6 @@
 2x Panel - Gantry Spacer
 1x Panel - HDMI support 1
 1x Panel - HDMI support 2
-1x Panel - Heater Chamber Bottom
-1x Panel - Heater Chamber Top
 1x Panel - Humidity Chamber Top Face
 1x Panel - Humidity Support
 1x Panel - Inner Back Wall
@@ -86,11 +84,13 @@
 2x Panel - NEMA 23 mount
 1x Panel - Rear Module Back Double Glazing
 1x Panel - Rear Module Back Face
+1x Panel - Rear Module Bottom Face
 1x Panel - Rear Module Electronics
 1x Panel - Rear Module Humidity Side
 1x Panel - Rear Module Humidity Side Double Glazing
 1x Panel - Rear Module PSU Side
 1x Panel - Rear Module PSU Side Double Glazing
+1x Panel - Rear Module Top Face
 2x Panel - Rear Module Top and Bottom Double Glazing
 2x Panel - Side
 4x Panel - Side Double Glazing
