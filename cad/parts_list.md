@@ -5,6 +5,7 @@
 1x Assembly - Electronics
 1x Assembly - Flap
 1x Assembly - Front Module
+1x Assembly - Humidity Chamber
 1x Assembly - Humidity Tube Inlet
 1x Assembly - Humidity Tube Outlet
 1x Assembly - Main Instrument
