@@ -23,16 +23,17 @@
 1x Assembly - Servo Flap
 2x Assembly - Side Wall
 1x Assembly - Top Face
+1x Assembly - Top Module
 4x Fixings - M2.5 PAN
 8x Fixings - M3 Button Screw 15mm
 8x Fixings - M3 Button Screw 15mm and Nut
 12x Fixings - M3 Button Screw 24mm
 12x Fixings - M3 Button Screw 24mm and Nut
-206x Fixings - M3 Button Screw 6mm
-189x Fixings - M3 Button Screw 6mm and Nut
+212x Fixings - M3 Button Screw 6mm
+195x Fixings - M3 Button Screw 6mm and Nut
 50x Fixings - M3 Cap Screw 10mm
 30x Fixings - M3 Cap Screw 10mm and Nut
-243x Fixings - M3 Nut
+249x Fixings - M3 Nut
 2x Fixings - M3 Wing Nut
 8x Fixings - M4 CSK 16mm
 4x Fixings - M4 CSK 26mm
