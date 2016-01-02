@@ -77,6 +77,7 @@
 2x Panel - Gantry Spacer
 1x Panel - HDMI support 1
 1x Panel - HDMI support 2
+2x Panel - Heater Reflector Plate
 1x Panel - Humidity Chamber Top Face
 1x Panel - Humidity Support
 1x Panel - Inner Back Wall
