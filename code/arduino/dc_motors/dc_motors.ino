@@ -67,8 +67,8 @@ void set_motors() {
   if (abs(M1_delta) > 105) power_1 = 255;
   else                     power_1 = abs(M1_delta) + 150;
   
-  if (M0_delta == 0) power_0 = 0;
-  if (M1_delta == 0) power_1 = 0;
+  if (abs(M0_delta) <= 1) power_0 = 0;
+  if (abs(M1_delta) <= 1) power_1 = 0;
   digitalWrite(M0_dir_1, !dir_0);
   digitalWrite(M0_dir_2,  dir_0);
   digitalWrite(M1_dir_1, !dir_1);
