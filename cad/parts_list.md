@@ -97,6 +97,7 @@
 2x Part - Back Foot
 1x Part - Choc Bloc
 2x Part - DC MotorWith Encoder
+1x Part - DFROBOT USB Touch Screen
 2x Part - Fan Blades
 1x Part - Flap Servo
 2x Part - Front Foot
