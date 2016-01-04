@@ -86,6 +86,7 @@
 1x Panel - Top Double Glazing Front
 1x Panel - Top Double Glazing Middle
 1x Panel - Top Face
+1x Panel - Top Module Back
 1x Panel - Top Module Bottom
 1x Panel - Top Module Front
 2x Panel - Top Module Side
