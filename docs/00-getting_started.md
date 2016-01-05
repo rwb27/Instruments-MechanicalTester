@@ -19,12 +19,12 @@
 
 [//]: # (END TITLE BLOCK)
 
-Either create a copy or customise
+There are really two options for assembling an instrument. In some cases it should be possible to just procure the parts needed and get the panels cut from the provided outline files. However even though the generic components have been used as far as possible some of them may well be hard to procure exact copies of and replacements may need to be sought needing some tweaks to the panels/mounting options. It is also likely that some users may wish to tailor the instrument to their specific needs. In these cases the source Sketchup model and an export script for generating the revised parts list and panels is provided.
 
-#### Create a copy
+Additionally during assembly it may well be useful to be able to explore the Sketchup model to check things are assembled as described.
 
-Clone Repo
+### Cloning the Instrument Repository
 
-Sketchup
+### Installing Sketchup
 
-Build Script
+### Running the Build Script
