@@ -19,12 +19,16 @@
 
 [//]: # (END TITLE BLOCK)
 
-There are really two options for assembling an instrument. In some cases it should be possible to just procure the parts needed and get the panels cut from the provided outline files. However even though the generic components have been used as far as possible some of them may well be hard to procure exact copies of and replacements may need to be sought needing some tweaks to the panels/mounting options. It is also likely that some users may wish to tailor the instrument to their specific needs. In these cases the source Sketchup model and an export script for generating the revised parts list and panels is provided.
+There are really two options for assembling an instrument. In some cases it should be possible to just procure the parts needed and get the panels cut from the provided outline files. Even though generic components have been used as far as possible some of them may be hard to procure exact copies of. If replacements need to be used then some tweaks to the panels/mounting options may be required. It is also likely that some users may wish to tailor the instrument to their specific needs. In these cases the source Sketchup model and an export script for generating the revised parts list and panels is provided.
 
 Additionally during assembly it may well be useful to be able to explore the Sketchup model to check things are assembled as described.
 
 ### Cloning the Instrument Repository
 
+GitHub provides [instructions](https://help.github.com/articles/cloning-a-repository/) for cloning a repository. For someone inexperienced with Git, the GitHub Desktop approach makes everything very easy - just make sure you're signed in to both GitHub in your browser and GitHub Desktop when you click the clone URL it describes. It's easy to forget to sign in to GitHub in the browser which will cause the browser link to just redirect to a page for installing GitHub Desktop. Only when you're logged in to both will the process work correctly. If you're still getting redirected to the install page then the link between the two is still not established, try logging out and in again in both places and reinstalling GitHub Desktop. Failing that Google is your friend!
+
 ### Installing Sketchup
+
+Sketchup Make is free to [download and install](http://www.sketchup.com/download).
 
 ### Running the Build Script
